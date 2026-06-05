@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>From Cloud Native to Multi-Cloud Native</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="theme-salesforce.css">
+</head>
+
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 01 - Cover -->
+    <section class="sheet cover" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Multi-Cloud Journey</div>
+        <div class="right"><span>Multi-Cloud</span><span class="folio">01</span></div>
+      </div>
+      <div class="s-title">
+        <div>
+          <div class="eyebrow">The Salesforce's Multi-Cloud Journey</div>
+          <h1>From Cloud Native to <em>Multi-Cloud Native</em></h1>
+          <div class="lead"></div>
+          <div class="dek"></div>
+          <div style="margin-top:28px">
+            <div style="font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-0.01em">Sandeep Pal</div>
+            <div style="font-size:16px;color:var(--ink-2);margin-top:6px">PMTS - Software Engineering</div>
+            <div style="font-size:14px;color:var(--muted);margin-top:4px">sandeeppal@salesforce.com</div>
+          </div>
+        </div>
+        <div class="cover-panel">
+          <div class="panel-kicker">Talk overview</div>
+          <div class="cover-metric">
+            <div class="num">3</div>
+            <div><div class="label">Why multi-cloud</div>
+            <div class="hint">Mandate, paradox, developer tax</div></div>
+          </div>
+          <div class="cover-metric">
+            <div class="num">2</div>
+            <div><div class="label">Portability patterns</div>
+            <div class="hint">Self-managed vs provider-managed</div></div>
+          </div>
+          <div class="cover-metric">
+            <div class="num">1</div>
+            <div><div class="label">Cloud-agnostic SDK</div>
+            <div class="hint">Open source abstraction layer</div></div>
+          </div>
+          <div class="bottom-line">From strategy to implementation to live demo</div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 02 - Agenda -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Overview</div>
+        <div class="right"><span>Agenda</span><span class="folio">02</span></div>
+      </div>
+      <div class="s-compare" style="padding-top:62px">
+        <h2>Today's <em>Agenda</em></h2>
+        <div class="grid" style="flex:1">
+          <div class="card">
+            <div class="kicker">Why?</div>
+            <h3>The Multi-Cloud Imperative</h3>
+            <ul>
+              <li>The Multi-Cloud Mandate: Why multi-cloud is no longer optional</li>
+              <li>The Cloud Native Paradox: Why cloud native often ends up locked in</li>
+              <li>The Developer Tax: Navigating fragmented cloud environments</li>
+            </ul>
+          </div>
+          <div class="card b">
+            <div class="kicker">What?</div>
+            <h3>Portability Patterns & Trade-offs</h3>
+            <ul>
+              <li>Architectural strategies for cloud-agnostic services</li>
+              <li>Why Provider-Managed Services are inevitable</li>
+              <li>Introducing MultiCloudJ: An open source Java SDK for cloud-agnostic development</li>
+            </ul>
+          </div>
+          <div class="card c">
+            <div class="kicker">How?</div>
+            <h3>Implementation & Demo</h3>
+            <ul>
+              <li>Architectural Overview: How abstraction layers simplify complexity</li>
+              <li>AI-driven adoption journey for the multi-cloud SDK</li>
+              <li>Live Demo: Deploying to AWS and GCP</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 03 - Why Multi-Cloud chapter -->
+    <section class="sheet dark" data-transition="zoom">
+      <div class="chrome">
+        <div><span class="dot"></span>Section</div>
+        <div class="right"><span>Why?</span><span class="folio">03</span></div>
+      </div>
+      <div class="s-chap">
+        <div class="kicker">Part One</div>
+        <div class="num">01</div>
+        <h2>Why <em>Multi-Cloud?</em></h2>
+        <div class="sub">The mandate, the paradox, and the developer tax</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 04 - Why Multi-Cloud is the New Standard -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Why</div>
+        <div class="right"><span>Standard</span><span class="folio">04</span></div>
+      </div>
+      <div class="s-compare" style="padding-top:62px">
+        <h2>Why Multi-Cloud is the <em>New Standard</em></h2>
+        <div class="grid four" style="flex:1">
+          <div class="card" style="padding:28px 26px;gap:14px">
+            <div class="kicker" style="font-size:11px">Gartner Report</div>
+            <h3 style="font-size:36px;color:var(--clay)">92%</h3>
+            <p style="font-size:16px;line-height:1.5">Over 92% of large enterprises now operate in a multi-cloud environment</p>
+          </div>
+          <div class="card b" style="padding:28px 26px;gap:14px">
+            <div class="kicker" style="font-size:11px">Provider Innovations</div>
+            <h3 style="font-size:24px">Best of Breed</h3>
+            <p style="font-size:16px;line-height:1.5">Vertex AI/Gemini (GCP) for deep LLM reasoning vs. Amazon Bedrock for multi-model orchestration</p>
+          </div>
+          <div class="card c" style="padding:28px 26px;gap:14px">
+            <div class="kicker" style="font-size:11px">Sovereignty</div>
+            <h3 style="font-size:24px">Compliance</h3>
+            <p style="font-size:16px;line-height:1.5">Meeting global compliance by placing workloads in specific jurisdictions</p>
+          </div>
+          <div class="card d" style="padding:28px 26px;gap:14px">
+            <div class="kicker" style="font-size:11px">Strategic Leverage</div>
+            <h3 style="font-size:24px">FinOps</h3>
+            <p style="font-size:16px;line-height:1.5">Using FinOps to drive vendor negotiation and optimizing costs</p>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 05 - Cloud Native quote -->
+    <section class="dark" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Definition</div>
+        <div class="right"><span>Cloud Native</span><span class="folio">05</span></div>
+      </div>
+      <div class="s-quote">
+        <div class="mark">"</div>
+        <blockquote>Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as <em>public, private, and hybrid clouds.</em></blockquote>
+        <div class="attrib">CNCF Cloud Native Definition — github.com/cncf/toc/blob/main/DEFINITION.md</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 06 - Break it Down -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Cloud Native</div>
+        <div class="right"><span>Pillars</span><span class="folio">06</span></div>
+      </div>
+      <div class="s-compare" style="padding-top:62px">
+        <h2>Break it <em>Down</em></h2>
+        <div class="grid four" style="flex:1">
+          <div class="card" style="padding:28px 26px;gap:14px;align-items:center;text-align:center">
+            <img src="https://api.iconify.design/mdi/docker.svg?color=%230176d3" alt="Containers" width="56" height="56">
+            <h3 style="font-size:24px">Microservices</h3>
+            <p style="font-size:15px;line-height:1.5">Break your monoliths into microservice architecture to de-couple them using containers</p>
+          </div>
+          <div class="card b" style="padding:28px 26px;gap:14px;align-items:center;text-align:center">
+            <img src="https://api.iconify.design/mdi/kubernetes.svg?color=%232e844a" alt="Kubernetes" width="56" height="56">
+            <h3 style="font-size:24px">Scale</h3>
+            <p style="font-size:15px;line-height:1.5">Orchestrations (K8S): Autoscale based on real time demand. Horizontally scalable</p>
+          </div>
+          <div class="card c" style="padding:28px 26px;gap:14px;align-items:center;text-align:center">
+            <img src="https://api.iconify.design/carbon/deployment-pattern.svg?color=%23dd7a01" alt="CI/CD" width="56" height="56">
+            <h3 style="font-size:24px">Automate</h3>
+            <p style="font-size:15px;line-height:1.5">CI/CD and IaC (Infrastructure as Code) for reducing manual work to test, deploy your services</p>
+          </div>
+          <div class="card d" style="padding:28px 26px;gap:14px;align-items:center;text-align:center">
+            <img src="https://api.iconify.design/mdi/monitor-dashboard.svg?color=%23c23934" alt="Observability" width="56" height="56">
+            <h3 style="font-size:24px">Observe</h3>
+            <p style="font-size:15px;line-height:1.5">Logs, metrics, graphs with Prometheus, Grafana, OpenTelemetry etc.</p>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px">Source: Google Cloud — cloud.google.com/resources/rearchitecting-to-cloud-native</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 07 - Cloud Native Portability -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Portability</div>
+        <div class="right"><span>The Gap</span><span class="folio">07</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Cloud-Native Portability <em>across clouds</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;min-height:0;margin-top:4px;align-items:center">
+          <!-- Left: vertical architecture stack -->
+          <div style="display:flex;flex-direction:column;gap:0;align-items:center;position:relative">
+            <!-- Application layer -->
+            <div style="width:100%;border:2px solid var(--rule);border-radius:12px;padding:16px 20px;background:rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;gap:16px">
+              <span style="position:relative;width:28px;height:28px;display:inline-block">
+                <img class="fragment fade-in-then-out" data-fragment-index="2" src="https://api.iconify.design/mdi/aws.svg?color=%23FF9900" width="28" height="28" alt="AWS" style="position:absolute;top:0;left:0">
+                <img class="fragment fade-in" data-fragment-index="3" src="https://api.iconify.design/mdi/layers-triple-outline.svg?color=%230176d3" width="28" height="28" alt="Abstraction Layer" style="position:absolute;top:0;left:0">
+              </span>
+              <img src="https://api.iconify.design/mdi/cloud-outline.svg?color=%230176d3" width="28" height="28" alt="SDK">
+              <span style="font-size:20px;font-weight:700;color:var(--ink)">Application</span>
+            </div>
+            <!-- Arrow down -->
+            <div style="font-size:20px;color:var(--muted);padding:4px 0">↓</div>
+            <!-- Container -->
+            <div style="width:60%;border:2px solid var(--rule);border-radius:12px;padding:12px 18px;background:rgba(255,255,255,.5);text-align:center">
+              <span style="font-size:18px;font-weight:700;color:var(--ink)">Container</span>
+            </div>
+            <!-- Arrow down -->
+            <div style="font-size:20px;color:var(--muted);padding:4px 0">↓</div>
+            <!-- K8s -->
+            <div style="width:60%;border:2px solid var(--rule);border-radius:12px;padding:12px 18px;background:rgba(255,255,255,.5);text-align:center">
+              <span style="font-size:18px;font-weight:700;color:var(--ink)">K8s</span>
+            </div>
+            <!-- Arrow down -->
+            <div style="font-size:20px;color:var(--muted);padding:4px 0">↓</div>
+            <!-- Provider layer (dashed border) -->
+            <div style="width:100%;border:2px dashed var(--mustard);border-radius:12px;padding:18px;background:rgba(221,122,1,.04);display:flex;align-items:center;gap:14px;justify-content:center;position:relative">
+              <img src="https://api.iconify.design/mdi/aws.svg?color=%23FF9900" width="24" height="24" alt="AWS" style="position:absolute;top:8px;right:12px">
+              <div class="fragment" data-fragment-index="0" style="border:2px solid var(--red);border-radius:8px;padding:10px 14px;text-align:center">
+                <div style="font-size:14px;font-weight:700;color:var(--ink)">KVstore</div>
+                <div style="font-size:11px;color:var(--muted)">(DDB)</div>
+              </div>
+              <div class="fragment" data-fragment-index="1" style="border:2px solid var(--red);border-radius:8px;padding:10px 14px;text-align:center">
+                <div style="font-size:14px;font-weight:700;color:var(--ink)">Blobstore</div>
+                <div style="font-size:11px;color:var(--muted)">(S3)</div>
+              </div>
+              <div style="border:2px solid var(--rule);border-radius:8px;padding:10px 14px;text-align:center">
+                <div style="font-size:14px;font-weight:700;color:var(--ink)">Compute</div>
+                <div style="font-size:11px;color:var(--muted)">(EKS)</div>
+              </div>
+            </div>
+          </div>
+          <!-- Right: explanation -->
+          <div class="fragment" data-fragment-index="3" style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+            <div style="border-left:4px solid var(--teal);padding:12px 18px;background:rgba(46,132,74,.06);border-radius:0 10px 10px 0">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px">Portable</div>
+              <div style="font-size:15px;color:var(--ink);line-height:1.4">Application, Container, and K8s layers are <b>cloud-agnostic</b> — they move freely between providers.</div>
+            </div>
+            <div style="border-left:4px solid var(--red);padding:12px 18px;background:rgba(194,57,52,.05);border-radius:0 10px 10px 0">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:6px">Locked-in</div>
+              <div style="font-size:15px;color:var(--ink);line-height:1.4">Data services (KV, Blob) use <b>provider-specific APIs</b>. Moving means rewriting your application code.</div>
+            </div>
+            <div style="border-left:4px solid var(--clay);padding:12px 18px;background:rgba(1,118,211,.06);border-radius:0 10px 10px 0">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:6px">The gap</div>
+              <div style="font-size:15px;color:var(--ink);line-height:1.4">Your app talks directly to provider APIs (red lines). An <b>abstraction layer</b> eliminates this coupling.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 08 - Developer Tax -->
+    <section class="dark" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Developer Tax</div>
+        <div class="right"><span>Strategies</span><span class="folio">08</span></div>
+      </div>
+      <div class="s-chap">
+        <div class="kicker">The challenge</div>
+        <h2>Developer <em>Tax</em></h2>
+        <div class="sub">Understanding the developer challenges in multi-cloud development</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 08b - Developer Tax Diagram -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Developer Tax</div>
+        <div class="right"><span>The Problem</span><span class="folio">09</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Multi-Cloud Service <em>targeting AWS, GCP & Alibaba</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;flex:1;min-height:0">
+        <img src="img/developer-tax.png" alt="Developer Tax — multiple SDKs per cloud" style="width:100%;border-radius:10px;box-shadow:0 2px 16px rgba(0,0,0,.1)">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:rgba(194,57,52,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:800;color:var(--red);min-width:22px;opacity:.7">01</span>
+            <span style="font-size:15px;color:var(--ink);line-height:1.4">Inconsistent semantics across provider SDKs</span>
+          </div>
+          <div style="background:rgba(194,57,52,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:800;color:var(--red);min-width:22px;opacity:.7">02</span>
+            <span style="font-size:15px;color:var(--ink);line-height:1.4">Steep learning curve for each provider's SDK and toolchain</span>
+          </div>
+          <div style="background:rgba(194,57,52,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:800;color:var(--red);min-width:22px;opacity:.7">03</span>
+            <span style="font-size:15px;color:var(--ink);line-height:1.4">Duplicated integration code across teams and services</span>
+          </div>
+          <div style="background:rgba(194,57,52,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:800;color:var(--red);min-width:22px;opacity:.7">04</span>
+            <span style="font-size:15px;color:var(--ink);line-height:1.4">Difficult to enforce consistent abstraction patterns</span>
+          </div>
+          <div style="background:rgba(194,57,52,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:800;color:var(--red);min-width:22px;opacity:.7">05</span>
+            <span style="font-size:15px;color:var(--ink);line-height:1.4">Onboarding new cloud providers is expensive and slow</span>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 08c - Strategies -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Strategies</div>
+        <div class="right"><span>Two Paths</span><span class="folio">10</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Strategies for <em>multi-cloud development</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;flex:1;min-height:0;margin-top:8px">
+          <!-- Left: Self Managed -->
+          <div style="border:2px solid var(--rule);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:18px;font-weight:700;color:var(--ink)">Self Managed Services</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:-8px">aka unmanaged</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;align-items:center">
+              <div style="text-align:center"><img src="https://api.iconify.design/simple-icons/apachehbase.svg?color=%23c62828" width="64" height="64"><div style="font-size:14px;color:var(--muted);margin-top:8px">HBase</div></div>
+              <div style="text-align:center"><img src="https://api.iconify.design/simple-icons/apachecassandra.svg?color=%231287B1" width="64" height="64"><div style="font-size:14px;color:var(--muted);margin-top:8px">Cassandra</div></div>
+              <div style="text-align:center"><img src="https://api.iconify.design/simple-icons/minio.svg?color=%23C72C48" width="64" height="64"><div style="font-size:14px;color:var(--muted);margin-top:8px">MinIO</div></div>
+              <div style="text-align:center"><img src="https://api.iconify.design/simple-icons/rabbitmq.svg?color=%23FF6600" width="64" height="64"><div style="font-size:14px;color:var(--muted);margin-top:8px">RabbitMQ</div></div>
+            </div>
+          </div>
+          <!-- Right: Provider Managed + Abstractions -->
+          <div style="border:2px solid var(--clay);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;background:rgba(1,118,211,.04)">
+            <div style="font-size:18px;font-weight:700;color:var(--ink)">Provider Managed Services + Abstractions</div>
+            <div style="display:flex;flex-direction:column;gap:20px;flex:1;justify-content:center">
+              <div style="display:flex;align-items:center;gap:18px;padding:20px 24px;background:rgba(1,118,211,.12);border:2px solid var(--clay);border-radius:10px;box-shadow:0 4px 16px rgba(1,118,211,.15)">
+                <img src="img/multicloudj.png" height="52" alt="MultiCloudJ" style="border-radius:6px">
+                <span style="font-size:22px;font-weight:800;color:var(--clay)">MultiCloudJ</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:18px;padding:18px 22px;background:rgba(1,118,211,.06);border-radius:10px">
+                <img src="https://api.iconify.design/simple-icons/go.svg?color=%2300ADD8" width="52" height="52">
+                <span style="font-size:20px;font-weight:700;color:var(--ink)">Go Cloud Development Kit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 09 - Self Managed Services -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Self Managed</div>
+        <div class="right"><span>Definition</span><span class="folio">11</span></div>
+      </div>
+      <div class="s-bullets">
+        <h2>Self Managed <em>Services</em></h2>
+        <div class="lede">A model where the organization is responsible for the entire lifecycle — installation, configuration, maintenance, scaling, and security. The cloud provider only provides raw building blocks.</div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px">
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(170,203,255,.4)">
+            <div style="font-family:'Geist Mono',monospace;font-weight:600;font-size:13px;color:var(--clay)">Ex.</div>
+            <div style="font-size:16px;line-height:1.35;color:var(--ink)">Installing Apache Cassandra on a VM, tuning the JVM, managing replication factors, patching the OS, and manually scaling nodes</div>
+          </div>
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:baseline;padding:12px 0">
+            <div style="font-family:'Geist Mono',monospace;font-weight:600;font-size:13px;color:var(--muted)">NIST</div>
+            <div style="font-size:16px;line-height:1.35;color:var(--ink-2)">Referred to under the Infrastructure as a Service (IaaS) model. Provider manages physical hardware and virtualization; everything inside the VM is self-managed.</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);position:absolute;bottom:40px;left:64px">Source: NIST SP 800-145 — The NIST Definition of Cloud Computing</div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 10 - Self Managed: Overview -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Self Managed</div>
+        <div class="right"><span>Overview</span><span class="folio">12</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Self Managed Services: <em>Trade-offs & Ownership</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;flex:1;min-height:0;margin-top:8px">
+          <!-- Left: Ownership models -->
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Ownership</div>
+            <div style="border:2px solid var(--rule);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/account-group-outline.svg?color=%230176d3" width="28" height="28">
+                <span style="font-size:15px;font-weight:700;color:var(--ink)">Decentralized</span>
+              </div>
+              <ul style="font-size:13px;color:var(--ink-2);margin:0;padding-left:18px;line-height:1.6">
+                <li>Redundant effort across teams</li>
+                <li>Cost intensive</li>
+                <li><b>Isolated blast radius</b></li>
+              </ul>
+            </div>
+            <div style="border:2px solid var(--clay);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;flex:1;background:rgba(1,118,211,.04)">
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/shield-account-outline.svg?color=%230176d3" width="28" height="28">
+                <span style="font-size:15px;font-weight:700;color:var(--ink)">Platform Team</span>
+              </div>
+              <ul style="font-size:13px;color:var(--ink-2);margin:0;padding-left:18px;line-height:1.6">
+                <li>Big blast radius</li>
+                <li><b>Centralized effort</b></li>
+                <li><b>Cost effective</b></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Middle: Pros -->
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:4px">Pros</div>
+            <div style="border:2px solid var(--teal);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;flex:1;background:rgba(46,132,74,.04)">
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/check-circle-outline.svg?color=%232e844a" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Consistent Semantics</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/open-source-initiative.svg?color=%232e844a" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Open Source Leverage</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/currency-usd-off.svg?color=%232e844a" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Zero License Fees</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/arrow-expand-all.svg?color=%232e844a" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Efficient at massive scale</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/domain.svg?color=%232e844a" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Large enterprises benefit most</span>
+              </div>
+            </div>
+          </div>
+          <!-- Right: Cons -->
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:4px">Cons</div>
+            <div style="border:2px solid var(--red);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;flex:1;background:rgba(194,57,52,.04)">
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/alert-outline.svg?color=%23c23934" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Very high operational overhead</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/update.svg?color=%23c23934" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Upgrade complexity (zero downtime)</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/cash-remove.svg?color=%23c23934" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">High opportunity cost</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <img src="https://api.iconify.design/mdi/puzzle-outline.svg?color=%23c23934" width="22" height="22">
+                <span style="font-size:14px;color:var(--ink)">Must build: authn, signing, backup, encryption, observability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 12 - Provider Managed Services -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Provider Managed</div>
+        <div class="right"><span>Trade-offs</span><span class="folio">13</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Provider Managed <em>Services</em></h2>
+        <div class="lede" style="margin:0;font-size:17px;line-height:1.5">A model where the cloud provider manages the underlying infrastructure, software installation, patching, scaling, and high availability. The consumer only configures and uses the service (e.g., DynamoDB, S3, Cloud Pub/Sub).</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:16px">
+          <!-- Pros -->
+          <div style="border:2px solid var(--teal);border-radius:12px;padding:24px;background:rgba(46,132,74,.04);display:flex;flex-direction:column;gap:16px">
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)">Pros</div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/rocket-launch-outline.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Accelerated Time-to-Market</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/cog-outline.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Operational Simplicity</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/cash-check.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Opportunity cost savings</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/shield-lock-outline.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Integrated Security</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/server-security.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Built-in Resilience</span>
+            </div>
+          </div>
+          <!-- Cons -->
+          <div style="border:2px solid var(--red);border-radius:12px;padding:24px;background:rgba(194,57,52,.04);display:flex;flex-direction:column;gap:16px">
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)">Cons</div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/cash-minus.svg?color=%23c23934" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Premium Pricing</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/swap-horizontal.svg?color=%23c23934" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink)">Inconsistent semantics across providers</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:rgba(194,57,52,.08);border-radius:8px;border:1px solid var(--red)">
+              <img src="https://api.iconify.design/mdi/lock-outline.svg?color=%23c23934" width="26" height="26">
+              <span style="font-size:18px;font-weight:700;color:var(--red)">Vendor Lock-In</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);position:absolute;bottom:40px;left:64px">Source: NIST SP 800-145 — The NIST Definition of Cloud Computing</div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 13 - Trade-offs Summary Table -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Comparison</div>
+        <div class="right"><span>Summary</span><span class="folio">14</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Trade-offs <em>Summary</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:2px solid var(--rule);margin-top:8px">
+          <!-- Header -->
+          <div style="background:var(--stage);padding:16px 24px;font-family:'Geist Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);border-bottom:1px solid rgba(170,203,255,.15)">Factor</div>
+          <div style="background:rgba(1,118,211,.08);padding:16px 24px;font-family:'Geist Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);border-bottom:1px solid var(--rule);text-align:center">Provider Managed</div>
+          <div style="background:rgba(170,203,255,.08);padding:16px 24px;font-family:'Geist Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--rule);text-align:center">Self-Managed</div>
+          <!-- Row 1 -->
+          <div style="padding:18px 24px;font-size:17px;font-weight:600;color:var(--ink);border-bottom:1px solid rgba(170,203,255,.3);display:flex;align-items:center;gap:12px"><img src="https://api.iconify.design/mdi/currency-usd.svg?color=%230176d3" width="24" height="24">Infrastructure Cost</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--ink-2);border-bottom:1px solid rgba(170,203,255,.3);text-align:center;background:rgba(1,118,211,.03);display:flex;align-items:center;justify-content:center">High (Premium)</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(170,203,255,.3);text-align:center;display:flex;align-items:center;justify-content:center">Low (Raw VM/Disk)</div>
+          <!-- Row 2 -->
+          <div style="padding:18px 24px;font-size:17px;font-weight:600;color:var(--ink);border-bottom:1px solid rgba(170,203,255,.3);display:flex;align-items:center;gap:12px"><img src="https://api.iconify.design/mdi/code-braces.svg?color=%230176d3" width="24" height="24">Semantics</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--red);border-bottom:1px solid rgba(170,203,255,.3);text-align:center;background:rgba(1,118,211,.03);display:flex;align-items:center;justify-content:center">Inconsistent</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(170,203,255,.3);text-align:center;display:flex;align-items:center;justify-content:center">Consistent</div>
+          <!-- Row 3 -->
+          <div style="padding:18px 24px;font-size:17px;font-weight:600;color:var(--ink);border-bottom:1px solid rgba(170,203,255,.3);display:flex;align-items:center;gap:12px"><img src="https://api.iconify.design/mdi/clock-outline.svg?color=%230176d3" width="24" height="24">Engineering Time</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(170,203,255,.3);text-align:center;background:rgba(1,118,211,.03);display:flex;align-items:center;justify-content:center">Near Zero</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--red);border-bottom:1px solid rgba(170,203,255,.3);text-align:center;display:flex;align-items:center;justify-content:center">High (Patching, Scaling, On-call)</div>
+          <!-- Row 4 -->
+          <div style="padding:18px 24px;font-size:17px;font-weight:600;color:var(--ink);border-bottom:1px solid rgba(170,203,255,.3);display:flex;align-items:center;gap:12px"><img src="https://api.iconify.design/mdi/lightbulb-outline.svg?color=%230176d3" width="24" height="24">Opportunity Cost</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(170,203,255,.3);text-align:center;background:rgba(1,118,211,.03);display:flex;align-items:center;justify-content:center">Zero</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--red);border-bottom:1px solid rgba(170,203,255,.3);text-align:center;display:flex;align-items:center;justify-content:center">High (Fix DBs, not features)</div>
+          <!-- Row 5 -->
+          <div style="padding:18px 24px;font-size:17px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:12px"><img src="https://api.iconify.design/mdi/alert-circle-outline.svg?color=%230176d3" width="24" height="24">Failure Cost</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--teal);font-weight:600;text-align:center;background:rgba(1,118,211,.03);display:flex;align-items:center;justify-content:center">Provider's problem (SLA)</div>
+          <div style="padding:18px 24px;font-size:17px;color:var(--red);text-align:center;display:flex;align-items:center;justify-content:center">Your problem (Downtime)</div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 14 - Provider Managed are Inevitable -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Conclusion</div>
+        <div class="right"><span>Inevitable</span><span class="folio">15</span></div>
+      </div>
+      <div class="s-bullets">
+        <h2>Provider Managed Services are <em>Inevitable</em></h2>
+        <div class="lede">Why Provider Managed Services are essential and irreplaceable:</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(1,118,211,.05);border-left:3px solid var(--clay);border-radius:0 10px 10px 0">
+            <img src="https://api.iconify.design/mdi/timer-sand.svg?color=%230176d3" width="24" height="24">
+            <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Timelines & Feature Gaps</b></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(1,118,211,.05);border-left:3px solid var(--clay);border-radius:0 10px 10px 0">
+            <img src="https://api.iconify.design/mdi/server-network.svg?color=%230176d3" width="24" height="24">
+            <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Core Services:</b> Lack of support for abstractions (Compute, ECR, DNS)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(1,118,211,.05);border-left:3px solid var(--clay);border-radius:0 10px 10px 0">
+            <img src="https://api.iconify.design/mdi/sitemap-outline.svg?color=%230176d3" width="24" height="24">
+            <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Architectural Constraints:</b> Risks of cyclic dependencies</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(1,118,211,.05);border-left:3px solid var(--clay);border-radius:0 10px 10px 0">
+            <img src="https://api.iconify.design/mdi/link-variant.svg?color=%230176d3" width="24" height="24">
+            <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Cross-service integrations:</b> S3 → SQS/SNS, Step Functions → SQS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(1,118,211,.05);border-left:3px solid var(--clay);border-radius:0 10px 10px 0">
+            <img src="https://api.iconify.design/mdi/shield-check-outline.svg?color=%230176d3" width="24" height="24">
+            <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Availability/SLA:</b> S3 has 11 9s of durability</span>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:16px">
+          <p><b>Most importantly:</b> Several self-managed services internally might use the provider managed services</p>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 15 - MultiCloud SDK chapter -->
+    <section class="sheet dark" data-transition="zoom">
+      <div class="chrome">
+        <div><span class="dot"></span>Section</div>
+        <div class="right"><span>What?</span><span class="folio">16</span></div>
+      </div>
+      <div class="s-chap">
+        <div class="kicker">Part Two</div>
+        <div class="num">02</div>
+        <h2>MultiCloud <em>SDK</em></h2>
+        <div class="sub">Portability patterns and the open source solution</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 15b - Fixing Developer Tax -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>MultiCloud SDK</div>
+        <div class="right"><span>The Fix</span><span class="folio">17</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Fixing the Developer Tax <em>with MultiCloud SDK</em></h2>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;flex:1;min-height:0">
+          <img src="img/multicloud-fix-developertax.png" alt="MultiCloud SDK fixing developer tax" style="width:100%;max-height:420px;object-fit:contain;border-radius:10px;box-shadow:0 2px 16px rgba(0,0,0,.1)">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border-left:3px solid var(--teal);border-radius:0 10px 10px 0">
+              <img src="https://api.iconify.design/mdi/check-circle-outline.svg?color=%232e844a" width="24" height="24">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4">Uniform semantics across all providers</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border-left:3px solid var(--teal);border-radius:0 10px 10px 0">
+              <img src="https://api.iconify.design/mdi/school-outline.svg?color=%232e844a" width="24" height="24">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4">No learning curve for each SDK</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border-left:3px solid var(--teal);border-radius:0 10px 10px 0">
+              <img src="https://api.iconify.design/mdi/cloud-check-outline.svg?color=%232e844a" width="24" height="24">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4">Write once, deploy anywhere</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border-left:3px solid var(--teal);border-radius:0 10px 10px 0">
+              <img src="https://api.iconify.design/mdi/code-tags-check.svg?color=%232e844a" width="24" height="24">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4">Maintainable and less code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 16 - Go-Cloud -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Go-Cloud</div>
+        <div class="right"><span>Prior Art</span><span class="folio">18</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Go-Cloud: MultiCloud SDK in <em>Go</em></h2>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="lede" style="font-size:17px;line-height:1.5;margin:0">Open sourced by Google in 2018. Salesforce built on top of the open source:</div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border:2px solid rgba(46,132,74,.2);border-radius:10px">
+              <img src="https://api.iconify.design/mdi/plus-network-outline.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>New services:</b> STS, Workflows, DNS, Registry, etc.</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border:2px solid rgba(46,132,74,.2);border-radius:10px">
+              <img src="https://api.iconify.design/mdi/atom-variant.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>New features:</b> Atomic writes and more</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(46,132,74,.06);border:2px solid rgba(46,132,74,.2);border-radius:10px">
+              <img src="https://api.iconify.design/mdi/cloud-plus-outline.svg?color=%232e844a" width="26" height="26">
+              <span style="font-size:17px;color:var(--ink);line-height:1.4"><b>Alibaba substrate:</b> Added in our internal fork</span>
+            </div>
+          </div>
+          <img src="img/gocloud.png" height="180" alt="Go Cloud" style="border-radius:10px">
+        </div>
+      </div>
+      <div style="font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);position:absolute;bottom:40px;left:64px">Source: gocloud.dev</div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 17 - MultiCloudJ -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>MultiCloudJ</div>
+        <div class="right"><span>Introduction</span><span class="folio">19</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>MultiCloudJ: <em>Open Source SDK for Multi-Cloud in Java</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px">
+          <!-- Left: About -->
+          <div style="border:2px solid var(--clay);border-radius:12px;padding:22px;background:rgba(1,118,211,.04);display:flex;flex-direction:column;gap:14px">
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--clay)">About</div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/github.svg?color=%23032e61" width="24" height="24">
+              <span style="font-size:16px;color:var(--ink)"><b>Origin:</b> Open-sourced by Salesforce in 2025</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/cloud-outline.svg?color=%23032e61" width="24" height="24">
+              <span style="font-size:16px;color:var(--ink)"><b>Providers:</b> AWS, Google Cloud, Alibaba Cloud</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/rocket-launch-outline.svg?color=%23032e61" width="24" height="24">
+              <span style="font-size:16px;color:var(--ink)"><b>Proven at Scale:</b> Mission-critical at Salesforce</span>
+            </div>
+          </div>
+          <!-- Right: Supported Services -->
+          <div style="border:2px solid var(--teal);border-radius:12px;padding:22px;background:rgba(46,132,74,.04);display:flex;flex-direction:column;gap:14px">
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)">Supported Services</div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/folder-outline.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Blobstore</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/database-outline.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Document Store</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/message-outline.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Pub/Sub</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/docker.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Container Registry</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/backup-restore.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Backup Restore</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/key-outline.svg?color=%232e844a" width="22" height="22">
+              <span style="font-size:16px;color:var(--ink)">Security Token Service (STS)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);position:absolute;bottom:40px;left:64px">Source: github.com/salesforce/multicloudj</div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 18 - Key Principles -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Principles</div>
+        <div class="right"><span>Design</span><span class="folio">20</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Key Principles of <em>MultiCloudJ</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px">
+          <div style="border:2px solid var(--clay);border-radius:12px;padding:22px;background:rgba(1,118,211,.04);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/earth.svg?color=%230176d3" width="32" height="32">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);opacity:.7">Principle 1</div>
+                <div style="font-size:20px;font-weight:700;color:var(--ink)">Cloud Neutral</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Enables write once, deploy anywhere. No provider-specific code in your application.</div>
+          </div>
+          <div style="border:2px solid var(--teal);border-radius:12px;padding:22px;background:rgba(46,132,74,.04);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/tune-variant.svg?color=%232e844a" width="32" height="32">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);opacity:.7">Principle 2</div>
+                <div style="font-size:20px;font-weight:700;color:var(--ink)">Flexibility</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Users can customize the provider implementation for their special use-cases.</div>
+          </div>
+          <div style="border:2px solid var(--mustard);border-radius:12px;padding:22px;background:rgba(221,122,1,.04);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/puzzle-outline.svg?color=%23dd7a01" width="32" height="32">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mustard);opacity:.7">Principle 3</div>
+                <div style="font-size:20px;font-weight:700;color:var(--ink)">Extensibility</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Interfaces can be extended with additional cloud providers seamlessly.</div>
+          </div>
+          <div style="border:2px solid var(--red);border-radius:12px;padding:22px;background:rgba(194,57,52,.04);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="https://api.iconify.design/mdi/equal-box.svg?color=%23c23934" width="32" height="32">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);opacity:.7">Principle 4</div>
+                <div style="font-size:20px;font-weight:700;color:var(--ink)">Uniform Semantics</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Provider semantics differences are handled by the SDK — users get a single, consistent API.</div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE - Part Three Chapter -->
+    <section class="sheet dark" data-transition="zoom">
+      <div class="chrome">
+        <div><span class="dot"></span>Section</div>
+        <div class="right"><span>How?</span><span class="folio">21</span></div>
+      </div>
+      <div class="s-chap">
+        <div class="kicker">Part Three</div>
+        <div class="num">03</div>
+        <h2>Implementation & <em>Demo</em></h2>
+        <div class="sub">Architecture, code walkthrough, AI-driven adoption, and live demo</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE - High Level Design -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Architecture</div>
+        <div class="right"><span>HLD</span><span class="folio">22</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>High Level Design of <em>MultiCloudJ</em></h2>
+        <div style="display:flex;align-items:center;justify-content:center;flex:1;min-height:0">
+          <img src="img/architecture.png" alt="MultiCloudJ Architecture" style="max-height:460px;max-width:100%;object-fit:contain;border-radius:10px;box-shadow:0 2px 16px rgba(0,0,0,.1)">
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE - Code Comparison -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Code</div>
+        <div class="right"><span>Comparison</span><span class="folio">23</span></div>
+      </div>
+      <div class="s-compare" style="padding-top:56px">
+        <h2>Code: AWS S3 vs <em>MultiCloudJ</em></h2>
+        <div class="grid two" style="flex:1">
+          <div class="card d" style="padding:14px 16px">
+            <div class="kicker">AWS S3 Direct</div>
+            <pre style="margin:4px 0 0;padding:12px 14px;border-radius:10px;background:rgba(3,45,96,.92);color:#eaf5fe;font-family:'Geist Mono',monospace;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow:hidden">// Initialize
+S3Client s3 = S3Client.builder()
+    .region(Region.US_EAST_1).build();
+
+// PUT OBJECT
+s3.putObject(PutObjectRequest.builder()
+    .bucket("my-bucket")
+    .key("example-key.txt").build(),
+    RequestBody.fromString("Hello"));
+
+// GET OBJECT
+ResponseBytes&lt;GetObjectResponse&gt; obj =
+    s3.getObjectAsBytes(GetObjectRequest
+        .builder()
+        .bucket("my-bucket")
+        .key("example-key.txt").build());
+byte[] data = obj.asByteArray();</pre>
+          </div>
+          <div class="card" style="padding:14px 16px">
+            <div class="kicker">MultiCloudJ</div>
+            <pre style="margin:4px 0 0;padding:12px 14px;border-radius:10px;background:rgba(3,45,96,.92);color:#eaf5fe;font-family:'Geist Mono',monospace;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow:hidden">// Initialize
+BucketClient client = BucketClient
+    .builder("aws")
+    .withBucket("my-bucket")
+    .withRegion("us-east-1").build();
+
+// PUT OBJECT
+UploadRequest uploadReq = UploadRequest
+    .builder()
+    .key("example-key.txt").build();
+client.upload(uploadReq,
+    "Hello!".getBytes());
+
+// GET OBJECT
+DownloadRequest downloadReq = DownloadRequest
+    .builder()
+    .key("example-key.txt").build();
+ByteArray result = client.download(
+    downloadReq, new ByteArray());
+byte[] data = result.getArray();</pre>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE - AI-Driven Enablement -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>AI-Driven</div>
+        <div class="right"><span>Adoption</span><span class="folio">24</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>AI-Driven Enablement: <em>Accelerating Adoption</em></h2>
+        <p style="font-size:17px;color:var(--ink-2);line-height:1.5;margin:0;max-width:900px">Purpose-built AI tooling that lets teams migrate from provider-specific code to MultiCloud SDKs in hours, not days.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px">
+          <!-- MCP Server -->
+          <div style="border:2px solid var(--clay);border-radius:12px;padding:24px;background:rgba(1,118,211,.04);display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/server-network.svg?color=%230176d3" width="36" height="36">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);opacity:.7">MCP Server</div>
+                <div style="font-size:19px;font-weight:700;color:var(--ink)">MultiCloud SDK MCP</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Real-time access to SDK documentation, API references, and migration patterns for AI assistants.</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto">
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(1,118,211,.1);color:var(--clay)">Claude</span>
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(1,118,211,.1);color:var(--clay)">MCP Protocol</span>
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(1,118,211,.1);color:var(--clay)">API Docs</span>
+            </div>
+          </div>
+          <!-- Migrator Skill -->
+          <div style="border:2px solid var(--teal);border-radius:12px;padding:24px;background:rgba(46,132,74,.04);display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <img src="https://api.iconify.design/mdi/sparkles.svg?color=%232e844a" width="36" height="36">
+              <div>
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);opacity:.7">AI Skill</div>
+                <div style="font-size:19px;font-weight:700;color:var(--ink)">Migrator Agent</div>
+              </div>
+            </div>
+            <div style="font-size:15px;color:var(--ink-2);line-height:1.5">Evaluates AWS-specific repositories and automates migration to MultiCloudJ abstractions with minimal developer effort.</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto">
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(46,132,74,.1);color:var(--teal)">Skills</span>
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(46,132,74,.1);color:var(--teal)">Code Migration</span>
+              <span style="padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(46,132,74,.1);color:var(--teal)">Auto-Refactor</span>
+            </div>
+          </div>
+        </div>
+        <!-- Mock prompts -->
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px">
+          <div style="border-radius:10px;background:rgba(3,45,96,.94);padding:12px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(0,0,0,.2)">
+            <img src="https://api.iconify.design/mdi/sparkles.svg?color=%23a78bfa" width="18" height="18">
+            <span style="font-family:'Geist Mono',monospace;font-size:13px;color:rgba(255,255,255,.5)">$</span>
+            <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#eaf5fe">help me evaluate if migration to MultiCloud SDK is feasible</span>
+          </div>
+          <div style="border-radius:10px;background:rgba(3,45,96,.94);padding:12px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(0,0,0,.2)">
+            <img src="https://api.iconify.design/mdi/sparkles.svg?color=%23a78bfa" width="18" height="18">
+            <span style="font-family:'Geist Mono',monospace;font-size:13px;color:rgba(255,255,255,.5)">$</span>
+            <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#eaf5fe">help me migrate this service from AWS SDK to MultiCloud SDK</span>
+            <span style="font-family:'Geist Mono',monospace;font-size:13px;color:rgba(255,255,255,.3);margin-left:auto">▊</span>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 21b - Behind the Scenes -->
+    <section class="sheet" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>AI-Driven</div>
+        <div class="right"><span>How it works</span><span class="folio">25</span></div>
+      </div>
+      <div class="s-flow">
+        <h2>Behind the Scenes: <em>What happens after the prompt</em></h2>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:24px;justify-content:center">
+          <!-- Step 0: User Prompt -->
+          <div style="border:2px solid var(--ink);border-radius:10px;padding:16px;background:rgba(3,45,96,.06);display:flex;flex-direction:column;align-items:center;gap:8px;width:150px;min-height:140px;justify-content:center">
+            <img src="https://api.iconify.design/mdi/account-circle-outline.svg?color=%23032e61" width="36" height="36">
+            <div style="font-size:14px;font-weight:700;color:var(--ink);text-align:center">User Prompt</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center">"Migrate to MultiCloud SDK"</div>
+          </div>
+          <!-- Arrow -->
+          <div style="font-size:22px;color:var(--clay)">→</div>
+          <!-- Step 1 -->
+          <div style="border:2px solid var(--clay);border-radius:10px;padding:16px;background:rgba(1,118,211,.05);display:flex;flex-direction:column;align-items:center;gap:8px;width:150px;min-height:140px;justify-content:center">
+            <img src="https://api.iconify.design/mdi/sparkles.svg?color=%230176d3" width="36" height="36">
+            <div style="font-size:14px;font-weight:700;color:var(--ink);text-align:center">Skill Executes</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center">Migrator skill triggered</div>
+          </div>
+          <!-- Arrow -->
+          <div style="font-size:22px;color:var(--clay)">→</div>
+          <!-- Step 2 -->
+          <div style="border:2px solid var(--clay);border-radius:10px;padding:16px;background:rgba(1,118,211,.05);display:flex;flex-direction:column;align-items:center;gap:8px;width:150px;min-height:140px;justify-content:center">
+            <img src="https://api.iconify.design/mdi/magnify-scan.svg?color=%230176d3" width="36" height="36">
+            <div style="font-size:14px;font-weight:700;color:var(--ink);text-align:center">Code Evaluation</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center">Scans for provider-specific code</div>
+          </div>
+          <!-- Arrow -->
+          <div style="font-size:22px;color:var(--clay)">→</div>
+          <!-- Step 3 -->
+          <div style="border:2px solid var(--clay);border-radius:10px;padding:16px;background:rgba(1,118,211,.05);display:flex;flex-direction:column;align-items:center;gap:8px;width:150px;min-height:140px;justify-content:center">
+            <img src="https://api.iconify.design/mdi/server-network.svg?color=%230176d3" width="36" height="36">
+            <div style="font-size:14px;font-weight:700;color:var(--ink);text-align:center">MCP Lookup</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center">Fetches API details from MCP</div>
+          </div>
+          <!-- Arrow -->
+          <div style="font-size:22px;color:var(--clay)">→</div>
+          <!-- Step 4 -->
+          <div style="border:2px solid var(--clay);border-radius:10px;padding:16px;background:rgba(1,118,211,.05);display:flex;flex-direction:column;align-items:center;gap:8px;width:150px;min-height:140px;justify-content:center">
+            <img src="https://api.iconify.design/mdi/file-document-check-outline.svg?color=%230176d3" width="36" height="36">
+            <div style="font-size:14px;font-weight:700;color:var(--ink);text-align:center">Feasibility Report</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center">Gaps, risks, migration plan</div>
+          </div>
+          <!-- Arrow + Branch -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div style="font-size:22px;color:var(--teal)">→</div>
+            <div style="font-size:22px;color:var(--mustard)">→</div>
+          </div>
+          <!-- Step 5: Two outcomes -->
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="border:2px solid var(--teal);border-radius:10px;padding:12px 14px;background:rgba(46,132,74,.06);display:flex;align-items:center;gap:10px;width:170px">
+              <img src="https://api.iconify.design/mdi/code-tags-check.svg?color=%232e844a" width="28" height="28">
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--teal)">Code Migrated</div>
+                <div style="font-size:10px;color:var(--muted)">Auto-refactored</div>
+              </div>
+            </div>
+            <div style="border:2px solid var(--mustard);border-radius:10px;padding:12px 14px;background:rgba(221,122,1,.06);display:flex;align-items:center;gap:10px;width:170px">
+              <img src="https://api.iconify.design/mdi/file-eye-outline.svg?color=%23dd7a01" width="28" height="28">
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--mustard)">Manual Review</div>
+                <div style="font-size:10px;color:var(--muted)">Report with gaps & blockers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 22 - Demo -->
+    <section class="dark" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>Live</div>
+        <div class="right"><span>Demo</span><span class="folio">26</span></div>
+      </div>
+      <div class="s-chap">
+        <div class="kicker">Live Demo</div>
+        <div class="num">&#9654;</div>
+        <h2><em>Demo</em></h2>
+        <div class="sub">Deploying the cloud-agnostic service to AWS and GCP</div>
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+    <!-- SLIDE 23 - Thank You -->
+    <section class="dark" data-transition="fade">
+      <div class="chrome">
+        <div><span class="dot"></span>End</div>
+        <div class="right"><span>Thanks</span><span class="folio">27</span></div>
+      </div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:64px;padding:80px">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+          <h1 style="font-size:56px;font-weight:700;color:#eaf5fe;letter-spacing:-0.03em;margin:0">Thank <em style="font-style:normal;color:var(--clay-soft)">you!</em></h1>
+          <div style="font-size:18px;color:#8fa8c8;margin-top:8px">Sandeep Pal</div>
+          <div style="font-size:15px;color:#5e7ba2">sandeeppal@salesforce.com</div>
+        </div>
+        <img src="img/linkedin.jpeg" alt="LinkedIn QR Code" style="width:200px;height:200px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.3)">
+      </div>
+      <div class="sig r">cloud native to multi-cloud native</div>
+    </section>
+
+  </div><!-- .slides -->
+</div><!-- .reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+Reveal.initialize({
+  width:1280, height:720,
+  margin:0.06,
+  center:true,
+  hash:true,
+  slideNumber:'c',
+  transition:'fade',
+  transitionSpeed:'default',
+  backgroundTransition:'fade',
+  controls:true,
+  progress:true,
+  plugins:[RevealHighlight]
+});
+</script>
+</body>
+</html>
