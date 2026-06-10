@@ -6,7 +6,7 @@
 <title>From Cloud Native to Multi-Cloud Native</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/highlight.js@11.10.0/src/styles/nord.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +83,6 @@
             <h3>Portability Patterns & Trade-offs</h3>
             <ul>
               <li>Architectural strategies for cloud-agnostic services</li>
-              <li>Why Provider-Managed Services are inevitable</li>
               <li>Introducing MultiCloudJ: An open source Java SDK for cloud-agnostic development</li>
             </ul>
           </div>
@@ -133,7 +132,7 @@
           <div class="card b" style="padding:28px 26px;gap:14px">
             <div class="kicker" style="font-size:11px">Provider Innovations</div>
             <h3 style="font-size:24px">Best of Breed</h3>
-            <p style="font-size:16px;line-height:1.5">Vertex AI/Gemini (GCP) for deep LLM reasoning vs. Amazon Bedrock for multi-model orchestration</p>
+            <p style="font-size:16px;line-height:1.5">Gemini on Vertex AI (GCP) for long-context multimodal models vs. Amazon Bedrock for a unified API to multiple foundation models (Anthropic, Meta, Mistral, Cohere, Amazon)</p>
           </div>
           <div class="card c" style="padding:28px 26px;gap:14px">
             <div class="kicker" style="font-size:11px">Sovereignty</div>
@@ -518,13 +517,15 @@
               <img src="https://api.iconify.design/mdi/cash-minus.svg?color=%23c23934" width="26" height="26">
               <span style="font-size:17px;color:var(--ink)">Premium Pricing</span>
             </div>
-            <div style="display:flex;align-items:center;gap:14px">
-              <img src="https://api.iconify.design/mdi/swap-horizontal.svg?color=%23c23934" width="26" height="26">
-              <span style="font-size:17px;color:var(--ink)">Inconsistent semantics across providers</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:rgba(194,57,52,.08);border-radius:8px;border:1px solid var(--red)">
-              <img src="https://api.iconify.design/mdi/lock-outline.svg?color=%23c23934" width="26" height="26">
-              <span style="font-size:18px;font-weight:700;color:var(--red)">Vendor Lock-In</span>
+            <div style="display:flex;flex-direction:column;gap:10px;padding:12px 16px;background:rgba(194,57,52,.08);border-radius:8px;border:1px solid var(--red)">
+              <div style="display:flex;align-items:center;gap:14px">
+                <img src="https://api.iconify.design/mdi/swap-horizontal.svg?color=%23c23934" width="26" height="26">
+                <span style="font-size:18px;font-weight:700;color:var(--red)">Inconsistent semantics across providers</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <img src="https://api.iconify.design/mdi/lock-outline.svg?color=%23c23934" width="26" height="26">
+                <span style="font-size:18px;font-weight:700;color:var(--red)">Vendor Lock-In</span>
+              </div>
             </div>
           </div>
         </div>
@@ -842,46 +843,48 @@
         <div class="grid two" style="flex:1">
           <div class="card d" style="padding:14px 16px">
             <div class="kicker">AWS S3 Direct</div>
-            <pre style="margin:4px 0 0;padding:12px 14px;border-radius:10px;background:rgba(3,45,96,.92);color:#eaf5fe;font-family:'Geist Mono',monospace;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow:hidden">// Initialize
+            <pre style="margin:4px 0 0;border-radius:10px;overflow:hidden"><code class="language-java" data-trim data-noescape style="display:block;padding:14px 16px;border-radius:10px;background:#2e3440;color:#d8dee9;font-family:'Geist Mono',monospace;font-size:13px;line-height:1.45">// Initialize
 S3Client s3 = S3Client.builder()
-    .region(Region.US_EAST_1).build();
+    .region(Region.US_EAST_1)
+    .build();
 
 // PUT OBJECT
-s3.putObject(PutObjectRequest.builder()
-    .bucket("my-bucket")
-    .key("example-key.txt").build(),
+s3.putObject(
+    PutObjectRequest.builder()
+        .bucket("my-bucket")
+        .key("example-key.txt")
+        .build(),
     RequestBody.fromString("Hello"));
 
 // GET OBJECT
 ResponseBytes&lt;GetObjectResponse&gt; obj =
-    s3.getObjectAsBytes(GetObjectRequest
-        .builder()
-        .bucket("my-bucket")
-        .key("example-key.txt").build());
-byte[] data = obj.asByteArray();</pre>
+    s3.getObjectAsBytes(
+        GetObjectRequest.builder()
+            .bucket("my-bucket")
+            .key("example-key.txt")
+            .build());
+byte[] data = obj.asByteArray();</code></pre>
           </div>
           <div class="card" style="padding:14px 16px">
             <div class="kicker">MultiCloudJ</div>
-            <pre style="margin:4px 0 0;padding:12px 14px;border-radius:10px;background:rgba(3,45,96,.92);color:#eaf5fe;font-family:'Geist Mono',monospace;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow:hidden">// Initialize
-BucketClient client = BucketClient
-    .builder("aws")
+            <pre style="margin:4px 0 0;border-radius:10px;overflow:hidden"><code class="language-java" data-trim data-noescape style="display:block;padding:14px 16px;border-radius:10px;background:#2e3440;color:#d8dee9;font-family:'Geist Mono',monospace;font-size:13px;line-height:1.45">// Initialize
+BucketClient client = BucketClient.builder("aws")
     .withBucket("my-bucket")
-    .withRegion("us-east-1").build();
+    .withRegion("us-east-1")
+    .build();
 
 // PUT OBJECT
-UploadRequest uploadReq = UploadRequest
-    .builder()
-    .key("example-key.txt").build();
-client.upload(uploadReq,
-    "Hello!".getBytes());
+UploadRequest uploadReq = UploadRequest.builder()
+    .key("example-key.txt")
+    .build();
+client.upload(uploadReq, "Hello!".getBytes());
 
 // GET OBJECT
-DownloadRequest downloadReq = DownloadRequest
-    .builder()
-    .key("example-key.txt").build();
-ByteArray result = client.download(
-    downloadReq, new ByteArray());
-byte[] data = result.getArray();</pre>
+DownloadRequest downloadReq = DownloadRequest.builder()
+    .key("example-key.txt")
+    .build();
+ByteArray result = client.download(downloadReq, new ByteArray());
+byte[] data = result.getArray();</code></pre>
           </div>
         </div>
       </div>
