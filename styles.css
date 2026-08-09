@@ -266,10 +266,32 @@ section h2 {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
+.post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.post-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.post-source-logo {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
 .post-date {
     color: #6b7280;
     font-size: 0.875rem;
-    margin-bottom: 1rem;
 }
 
 .post-card h3 {
@@ -318,10 +340,41 @@ section h2 {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.project-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
 .project-card h3 {
     color: #1f2937;
-    margin-bottom: 1rem;
     font-size: 1.25rem;
+}
+
+.project-role {
+    margin-left: auto;
+    padding: 0.25rem 0.6rem;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.project-role-contributor {
+    background: #f3f4f6;
+    color: #4b5563;
+    border-color: #e5e7eb;
 }
 
 .project-card p {
